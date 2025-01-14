@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>African Projects - Africa Geoscience Data Platform</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="geodata-inventory.html">Geodata Inventory</a></li>
+                    <li class="current"><a href="african-projects.html">African Projects</a></li>
+                    <li><a href="geodata-platforms.html">Geodata Platforms</a></li>
+                    <li><a href="about.html">About AGDP</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Language</a>
+                        <ul>
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">French</a></li>
+                            <li><a href="#">Portuguese</a></li>
+                            <li><a href="#">Swahili</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <section id="main" class="wrapper style1">
+            <div class="container">
+                <header class="major">
+                    <h2>African Projects</h2>
+                    <p>Explore geoscience projects driving innovation and development across Africa.</p>
+                </header>
+
+                <!-- Search and Filter -->
+                <div class="search-filter">
+                    <form>
+                        <input type="text" placeholder="Search projects..." />
+                        <select>
+                            <option value="all">All Categories</option>
+                            <option value="geological">Geological</option>
+                            <option value="hydrology">Hydrology</option>
+                            <option value="seismic">Seismic Studies</option>
+                        </select>
+                        <select>
+                            <option value="all">All Status</option>
+                            <option value="ongoing">Active</option>
+                            <option value="completed">Inactive</option>
+                            <option value="upcoming">Completed</option>
+                        </select>
+                        <button type="submit" class="button">Filter</button>
+                    </form>
+                </div>
+
+                <!-- Project List -->
+                <div id="project-container" class="project-list"></div>
+   
+        </section>
+
+<!-- Footer -->
+<footer id="footer" style="background-color: #f9f9f9; text-align: center; padding: 40px 20px; font-family: Arial, sans-serif;">
+    <div class="container">
+        <!-- Logo -->
+        <div style="margin-bottom: 20px;">
+            <img src="images\agdp.png" alt="AGDP Logo" style="height: 50px; display: block; margin: 0 auto;">
+        </div>
+
+        <!-- Description -->
+        <p style="font-size: 14px; color: #555; max-width: 600px; margin: 0 auto 10px;">
+            Empowering Africa with accessible geospatial data to drive sustainable development and innovation.
+        </p>
+
+        <!-- Links -->
+        <div style="margin-bottom: 20px;">
+            <a href="about.html" style="margin: 0 15px; font-size: 14px; color: #333; text-decoration: none;">About</a>
+            <a href="geodata-inventory.html" style="margin: 0 15px; font-size: 14px; color: #333; text-decoration: none;">Geodata Inventory</a>
+            <a href="geodata-platforms.html" style="margin: 0 15px; font-size: 14px; color: #333; text-decoration: none;">Geodata Platforms</a>
+            <a href="african-projects.html" style="margin: 0 15px; font-size: 14px; color: #333; text-decoration: none;"> African Projects</a>
+            <a href="contact.html" style="margin: 0 15px; font-size: 14px; color: #333; text-decoration: none;">Contact Us</a>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div>
+            <a href="https://twitter.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none;">
+                <i class="icon brands fa-twitter" style="font-size: 20px;"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none;">
+                <i class="icon brands fa-facebook-f" style="font-size: 20px;"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none;">
+                <i class="icon brands fa-instagram" style="font-size: 20px;"></i>
+            </a>
+            <a href="https://github.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none;">
+                <i class="icon brands fa-github" style="font-size: 20px;"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none;">
+                <i class="icon brands fa-linkedin-in" style="font-size: 20px;"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        async function loadProjects() {
+            const container = document.getElementById('project-container');
+            try {
+                // Fetch JSON data
+                const response = await fetch('assets/afri-projects.json');
+                const projects = await response.json();
+    
+                // Generate project cards
+                projects.forEach(project => {
+                    const card = document.createElement('article');
+    
+                    card.innerHTML = `
+                        <h3>${project['Initiative/Item Name'] || 'N/A'}</h3>
+                        <p class="dates"><strong>Start:</strong> ${project['Start Date'] || 'N/A'} | <strong>End:</strong> ${project['End Date'] || 'N/A'}</p>
+                        <p class="description">${project['Abstract'] || 'No description available.'}</p>
+                        <div class="footer">
+                            <div class="details">
+                                <p><strong>Status:</strong> ${project['Status'] || 'N/A'}</p>
+                                <p><strong>Thematic Area:</strong> ${project['Thematic Area (Geoscientific)'] || 'N/A'}</p>
+                            </div>
+                            ${project['Website/Link'] 
+                                ? `<a href="${project['Website/Link']}" target="_blank" class="view-project-button">View Project</a>` 
+                                : ''}
+                        </div>
+                    `;
+    
+                    // Append card to container
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading projects:', error);
+                container.innerHTML = `<p>Failed to load project data. Please try again later.</p>`;
+            }
+        }
+    
+        // Load projects on page load
+        window.addEventListener('DOMContentLoaded', loadProjects);
+    </script>    
+</body>
+
+</html>

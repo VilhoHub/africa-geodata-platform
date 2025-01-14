@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geodata Platforms - Africa Geoscience Data Platform</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+
+  <body class="is-preload">
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header">
+        <nav id="nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="geodata-inventory.html">Geodata Inventory</a></li>
+            <li><a href="african-projects.html">African Projects</a></li>
+            <li class="current">
+              <a href="geodata-platforms.html">Geodata Platforms</a>
+            </li>
+            <li><a href="about.html">About AGDP</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li class="dropdown">
+              <a href="#">Language</a>
+              <ul>
+                <li><a href="#">English</a></li>
+                <li><a href="#">French</a></li>
+                <li><a href="#">Portuguese</a></li>
+                <li><a href="#">Swahili</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Main Content -->
+      <section id="main" class="wrapper style1">
+        <div class="container">
+          <div class="row gtr-200">
+            <!-- Sidebar -->
+            <div class="col-4 col-12-narrower">
+              <div id="sidebar">
+                <section>
+                  <h3>Featured Platforms</h3>
+                  <ul class="links">
+                    <li><a href="#">Digital Earth Africa</a></li>
+                    <li><a href="#">Africa GeoPortal</a></li>
+                    <li><a href="#">OpenStreetMap Africa</a></li>
+                    <li><a href="#">Global Forest Watch</a></li>
+                    <li><a href="#">NASA Earth Observations</a></li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h3>Platform Highlights</h3>
+                  <p>
+                    Explore powerful geospatial platforms providing essential
+                    tools and data for mapping, monitoring, and decision-making
+                    across Africa.
+                  </p>
+                  <footer>
+                    <a href="#" class="button">Learn More</a>
+                  </footer>
+                </section>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="col-8 col-12-narrower imp-narrower">
+              <div id="content">
+                <header class="major">
+                  <h2>Geodata Platforms</h2>
+                  <p>
+                    Discover platforms offering geospatial data and tools for
+                    Africa.
+                  </p>
+                </header>
+
+                <!-- Platforms Grid -->
+                <div id="platforms-grid" class="platforms-grid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="container">
+          <ul class="icons">
+            <li>
+              <a href="#" class="icon brands fa-twitter"
+                ><span class="label">Twitter</span></a
+              >
+            </li>
+            <li>
+              <a href="#" class="icon brands fa-facebook-f"
+                ><span class="label">Facebook</span></a
+              >
+            </li>
+            <li>
+              <a href="#" class="icon brands fa-github"
+                ><span class="label">GitHub</span></a
+              >
+            </li>
+            <li>
+              <a href="#" class="icon brands fa-linkedin-in"
+                ><span class="label">LinkedIn</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        async function loadJson() {
+          try {
+            // Fetch the JSON file
+            const response = await fetch("assets/african_platforms.json"); // Use relative path
+            const data = await response.json();
+
+            // Populate the platforms grid
+            populatePlatforms(data);
+          } catch (error) {
+            console.error("Error loading JSON file:", error);
+          }
+        }
+
+        function populatePlatforms(data) {
+          const container = document.getElementById("platforms-grid");
+
+          data.forEach((row) => {
+            const logoSrc = row["Logos"] || "images/pic01.jpg"; // Default image if Logos field is empty
+            const availableLink = row["Available Link "]?.trim() || "#"; // Default link if none provided
+
+            // Create card element
+            const card = document.createElement("a");
+            card.href = availableLink;
+            card.target = "_blank";
+            card.className = "group relative block";
+
+            card.innerHTML = `
+    <span class="absolute inset-0 border-2 border-dashed border-black"></span>
+    <div class="relative flex flex-col items-center justify-between h-64 sm:h-80 lg:h-96 transform border-2 border-black bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2">
+        <img src="${logoSrc}" alt="${
+              row["Topic/Website"]
+            }" class="logo mb-4 object-cover" />
+        <h3 class="title text-lg font-bold text-gray-900 uppercase">${
+          row["Topic/Website"]
+        }</h3>
+        <p class="description">
+            ${
+              row["What is on the Website"]
+                ? row["What is on the Website"].slice(0, 150) + "..."
+                : "No description available."
+            }
+        </p>
+        <button class="visit-button mb-4 bg-green-500 text-white px-4 py-2 text-xs font-bold uppercase rounded hover:bg-green-600">
+            Visit Platform
+        </button>
+    </div>
+`;
+
+            // Append the card to the container
+            container.appendChild(card);
+          });
+        }
+
+        // Load JSON file
+        loadJson();
+      });
+    </script>
+  </body>
+</html>

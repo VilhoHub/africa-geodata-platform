@@ -1,0 +1,353 @@
+[
+    {
+        "Initiative/Item Name": "Africa Array",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "AfricaArray advancing Geophysics in Africa",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://www.AfricaArray.org"
+    },
+    {
+        "Initiative/Item Name": "Africa Geoportal",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://www.africageoportal.com/maps/esriza::11000000-geological-map/about"
+    },
+    {
+        "Initiative/Item Name": "Africa GIS",
+        "Start Date": "1998",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "Africa Major Mineral Deposits Web Map",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "This dataset shows Regional locations and general geologic setting of known deposits of major nonfuel mineral commodities in Africa",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://opendata.rcmrd.org/maps/e1f8c7cfc20d47ca906fdbdd0d8c761b/explore?location=-1.109369%2C14.560400%2C3.28"
+    },
+    {
+        "Initiative/Item Name": "Africa Minerals and Geoscience Centre",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "www.seamic.org"
+    },
+    {
+        "Initiative/Item Name": "African Climate and Development Initiative (ACDI)",
+        "Start Date": "2011",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "The African Climate and Development Initiative (ACDI) is a leading institute based at the University of Cape Town, dedicated to addressing the complex challenges of climate change and sustainable development from an African perspective.",
+        "Thematic Area (Geoscientific)": "Climate and Environmental Change",
+        "Website/Link": "https://acdi.uct.ac.za/"
+    },
+    {
+        "Initiative/Item Name": "African Geological and Mineral Information System (GMIS)",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "The Geological and Mineral Information System (GMIS) Strategy has been produced by the African Mineral Development Centre (AMDC) to facilitate the strengthening of the African production, management and dissemination of geological and mineral information necessary for several important legal, economic, social and environmental applications. \nThe AMDC led development of the GMIS Strategy as part of its mission to implement the African Mining Vision (AMV), which sets out how mining can be used to drive continental development. Development of the Strategy was highly collaborative, and represents the first time that so many stakeholders in geological information at national, regional and continental level have come together to produce a pan-African strategy. ",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "African Groundwater Network (AGW-Net)",
+        "Start Date": "2008",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "The African Groundwater Network (AGW-Net) is an initiative aimed at enhancing the sustainable management of groundwater resources in Africa. It promotes capacity building, knowledge sharing, and policy advocacy for groundwater management to address water scarcity and support socio-economic development.",
+        "Thematic Area (Geoscientific)": "Groundwater",
+        "Website/Link": "http://agw-net.org/"
+    },
+    {
+        "Initiative/Item Name": "African Minerals Development Centre (AMDC)",
+        "Start Date": "2013",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "African Research Fellowship (ARF)",
+        "Start Date": "2021",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "The ARF program aims to empower African researchers with PhDs or extensive experience in Earth Observation (EO) to engage in research and development activities relevant to African challenges, particularly in water resource management and food security.",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://eo4society.esa.int/"
+    },
+    {
+        "Initiative/Item Name": "African Seismological Commission (AfSC)",
+        "Start Date": "2014",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "The African Seismological Commission (AfSC) is a regional commission under the International Seismological Centre, focused on earthquake monitoring, research, and capacity building across Africa. It seeks to improve disaster preparedness and resilience by developing seismological knowledge and technologies suitable for the African context",
+        "Thematic Area (Geoscientific)": "Earthquake Monitoring",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "Botswana Geoscience Portal ",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "http://geoscienceportal.geosoft.com/Botswana/search"
+    },
+    {
+        "Initiative/Item Name": "Compilation of Geospatial Data (GIS) for the Mineral Industries and Related Infrastructure of Africa",
+        "Start Date": "2008",
+        "End Date": "2019",
+        "Status": "",
+        "Abstract": "This geodatabase reflects the U.S. Geological Survey’s (USGS) ongoing commitment to its mission of understanding the nature and distribution of global mineral commodity supply chains by updating and publishing the georeferenced locations of mineral commodity production and processing facilities, mineral exploration and development sites, and mineral commodity exporting ports in Africa. The geodatabase and geospatial data layers serve to create a new geographic information product in the form of a geospatial portable document format (PDF) map. The geodatabase contains data layers from USGS, foreign governmental, and open-source sources as follows: (1) mineral production and processing facilities, (2) mineral exploration and development sites, (3) mineral occurrence sites and deposits, (4) undiscovered mineral resource tracts for Gabon and Mauritania, (5) undiscovered mineral resource tracts for potash, platinum-group elements, and copper, (6) coal occurrence areas, (7) electric power generating facilities, (8) electric power transmission lines, (9) liquefied natural gas terminals, (10) oil and gas pipelines, (11) undiscovered, technically recoverable conventional and continuous hydrocarbon resources (by USGS geologic/petroleum province), (12) cumulative production, and recoverable conventional resources (by oil- and gas-producing nation), (13) major mineral exporting maritime ports, (14) railroads, (15) major roads, (16) major cities, (17) major lakes, (18) major river systems, (19) first-level administrative division (ADM1) boundaries for all countries in Africa, and (20) international boundaries for all countries in Africa.",
+        "Thematic Area (Geoscientific)": "Mineral Resources",
+        "Website/Link": "https://data.usgs.gov/datacatalog/data/USGS:607611a9d34e018b3201cbbf"
+    },
+    {
+        "Initiative/Item Name": "Compilation of Geospatial Data (GIS) for the Mineral Industries and Related Infrastructure of Africa",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://www.usgs.gov/data/compilation-geospatial-data-gis-mineral-industries-and-related-infrastructure-africa"
+    },
+    {
+        "Initiative/Item Name": "CORDIS EU research results: African-European Georesources Observation System (AEGOS)",
+        "Start Date": "2008",
+        "End Date": "2011",
+        "Status": "Inactive",
+        "Abstract": "AEGOS is planned as an effective management system providing data and information on the geopotential of natural mineral resources, as well as the georesources geothermal energy and groundwater. These data and information is to be made available via the internet, not only for political and economic decision makers but also for the general public.",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://cordis.europa.eu/project/id/212545"
+    },
+    {
+        "Initiative/Item Name": "Council for Geoscience (CGS)",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "CGS conducts  extensive geoscience mapping to support mineral exploration and infrastructure development. This includes both onshore and offshore mapping projects",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "Digital Earth Africa (DE Africa)",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "DE Africa will process openly accessible and freely available data to produce decision-ready products. Working closely with the AfriGEO community, DE Africa will be responsive to the information needs, challenges and priorities of the African continent. DE Africa will leverage and build on existing capacity to enable the use of Earth observations to address key challenges across the continent.",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://www.digitalearthafrica.org/"
+    },
+    {
+        "Initiative/Item Name": "Earth Data Namibia",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://www.mme.gov.na//edn/"
+    },
+    {
+        "Initiative/Item Name": "Geo-Mapping for Energy and Minerals (GEM) Africa",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "Energy and Mineral Resources",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "Geophysical Surveys In Africa",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "Data from geophysical surveys in many African countries carried out by the British Geological Survey for different agencies. The surveys range from regional gravity and airborne magnetic mapping to targetted surveys for mineral and water. Individual surveys do not yet have metadata entries: this entry describes a notional database that represents all geophysical surveys carried out within the region.",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://www.data.gov.uk/dataset/4da85419-16a9-4fda-abc8-1314589f8534/geophysical-surveys-in-africa"
+    },
+    {
+        "Initiative/Item Name": "Geoscience Data Management Portal",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "Access to the information on the portal.",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://maps.geoscience.org.za/portal/apps/sites/#/council-for-geoscience-interactive-web-map-1"
+    },
+    {
+        "Initiative/Item Name": "Geoscience Information in Africa (GIRAF)",
+        "Start Date": "2006",
+        "End Date": "2016",
+        "Status": "Inactive",
+        "Abstract": "The GIRAFnetwork was founded as a platform and network for African geoscience information experts to share information and experience and to cooperate across political boundaries. It was also created as a forum to discuss and understand the real needs and issues in geoscience information management, delivery and technology in Africa and to facilitate the inclusion of African geoscience information experts into international initiatives and projects. The ultimate aim of the GIRAF network is to improve the environmental conditions and economic circumstances in Africa by application of information technology based on geoscience data and information. GIRAF was founded in 2009, the inaugural conference-workshop being held in Windhoek (Namibia), and the network has grown ever since.",
+        "Thematic Area (Geoscientific)": "Geoscience Information",
+        "Website/Link": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Projekte/abgeschlossen/GIRAF/giraf_inhalt_en.html "
+    },
+    {
+        "Initiative/Item Name": "Geosciene Africa",
+        "Start Date": "2016",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "Geoscience Africa is an initiative by Cardiff University, aimed at fostering collaboration between geoscientists in Africa and the UK. The program focuses on capacity building, research, and education to address pressing challenges in geology, mining, energy resources, and environmental sustainability. Through partnerships with African universities and organizations, the initiative seeks to advance research on Africa's unique geology and support sustainable development",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://www.cardiff.ac.uk/research/explore/research-units/geoscience-africa"
+    },
+    {
+        "Initiative/Item Name": "Horn of Africa - Groundwater for Resilience Project",
+        "Start Date": "2021",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "The Horn of Africa Groundwater for Resilience Project aims to enhance sustainable groundwater management to improve water security and climate resilience in the Horn of Africa. This initiative focuses on groundwater mapping, resource development, and capacity building to support drought-prone and water-scarce regions. It also seeks to reduce water-related vulnerabilities, ensure reliable access to groundwater resources, and strengthen regional cooperation.",
+        "Thematic Area (Geoscientific)": "Groundwater",
+        "Website/Link": "Development Projects : Horn of Africa - Groundwater for Resilience Project - P174867"
+    },
+    {
+        "Initiative/Item Name": "IGCP- International Geoscience Programme",
+        "Start Date": "1972",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "The International Geoscience Programme (IGCP) is a cooperative venture of UNESCO and the International Union of Geological Sciences (IUGS). It fosters scientific collaboration and research on key geoscientific issues such as natural resources, climate change, geological hazards, and water resources. ",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "IUGS Ten Action Plan for Africa (TAP for Africa)",
+        "Start Date": "2024",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "A strategic plan developed to enhance geoscience in Africa through fundraising, education, outreach, and improved geological knowledge.",
+        "Thematic Area (Geoscientific)": "Geoscience Development",
+        "Website/Link": "https://www.iugs.org/_files/ugd/f1fc07_f37dad4f2b4049f89233a0a3224a5c5d.pdf?index=true"
+    },
+    {
+        "Initiative/Item Name": "Mining Portal",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://maps.landfolio.com/Namibia/"
+    },
+    {
+        "Initiative/Item Name": "Ministry of Mines and Energy Portal",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "The Ministry of Mines and Energy Portal provides an electronic platform to enable stakeholders within the respective sectors (Mining, Diamond and Petroleum) to engage directly with the Ministry.\nThe Map Portal displays an interactive Cadastre map where the public can view and search on various Mineral Rights and Petroleum Licences within Namibia.",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://portal.mme.gov.na/page/landing"
+    },
+    {
+        "Initiative/Item Name": "ONE Geology",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "Pan-African Support to the EuroGeoSurveys – Organisation of African Geological Surveys (EGS-OAGS) Partnership (PanAfGeo)",
+        "Start Date": "2016",
+        "End Date": "",
+        "Status": "Inactive",
+        "Abstract": "PanAfGeo is a project that supports the training of geoscientific staff from African Geological Surveys through the development of an innovative training programme that includes the acquisition and development of important professional skills to complement their technical capabilities and qualifications.",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://panafgeo.eurogeosurveys.org/panafgeo-1-results/"
+    },
+    {
+        "Initiative/Item Name": "Pan-African Support to the EuroGeoSurveys – Organisation of African Geological Surveys (EGS-OAGS) Partnership (PanAfGeo) - 2",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": " PanAfGeo-2 is a continuation of the well-established PanAfGeo Project. The PanAfGeo-2 actions are based on and implemented through trainings done in different geoscientific domains. These trainings will be delivered in face-to-face form, field trips and on-the-job sessions, depending on the respective thematic areas.\nPanAfGeo-2 also aims to support capacity building at a political, institutional and technical level in Africa by focusing on georesources goverance. By involving management level, senior African geoscientists and leaders we will improve the overall system at national, continental and international level, in particular by boosting Africa-EU synergies. All activities of PanAfGeo-2 shall reinforce the governance and sustainable management of georesources within the African-EU Partnership.",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://panafgeo.eurogeosurveys.org/"
+    },
+    {
+        "Initiative/Item Name": "PAULESI",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "South African Marine Geoscience Programme (SAMGeP)",
+        "Start Date": "2015",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "SAMGeP is a research initiative focused on marine geoscience in South Africa. The program aims to enhance the understanding of the geology of South Africa's marine environment, including its continental shelf and offshore mineral resources. It emphasizes environmental sustainability, supports marine spatial planning, and contributes to the blue economy by identifying economic opportunities in offshore resources.",
+        "Thematic Area (Geoscientific)": "Marine Geology",
+        "Website/Link": "https://www.geoscience.org.za/"
+    },
+    {
+        "Initiative/Item Name": "Southern and Eastern Africa Mineral Centre (SEAMIC)",
+        "Start Date": "1977",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "The Southern and Eastern Africa Mineral Centre (SEAMIC), headquartered in Dar es Salaam, Tanzania, was established to provide geoscientific services to its member states. SEAMIC focuses on geological mapping, mineral exploration, laboratory analysis, and capacity building to support sustainable mineral resource development in the region.\n",
+        "Thematic Area (Geoscientific)": "Mineral Resources",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "Surficial geology of Africa (geo7_2ag)",
+        "Start Date": "",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://www.sciencebase.gov/catalog/item/60d0ff26d34e86b938aab404"
+    },
+    {
+        "Initiative/Item Name": "Uganda Geoscience Data Portal",
+        "Start Date": "2019",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "The Uganda Geoscience Portal has a powerful user-friendly interface for delivering multi-disciplinary data and documents stored within multiple systems. Stakeholders can define their area of interest to search for data, interrogate, preview and download data in commercial or open standard formats via a shareable link. The data can easily be integrated into exploration company prospectivity analysis, exploration software packages and other decision support packages used by potential investors.",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "West African Exploration Initiative (WAXI)",
+        "Start Date": "2006",
+        "End Date": "",
+        "Status": "Active",
+        "Abstract": "",
+        "Thematic Area (Geoscientific)": "Mineral Exploration ",
+        "Website/Link": ""
+    },
+    {
+        "Initiative/Item Name": "Zimbabwe Geological Survey (ZGS)",
+        "Start Date": "1910",
+        "End Date": "",
+        "Status": "",
+        "Abstract": "The GSZ is dedicated to promoting geosciences and the profession of geology in Zimbabwe. It fosters fellowship and cooperation among geoscientists through educational field trips, geological talks, and the management of research and development funds.",
+        "Thematic Area (Geoscientific)": "",
+        "Website/Link": "https://www.test.gov.zw/?page_id=1803"
+    },
+    {
+        "Initiative/Item Name": "Menengai Geothermal Development Project ",
+        "Start Date": "2011",
+        "End Date": "December 2025 (Expected)\n",
+        "Status": "Active",
+        "Abstract": "The Menengai Geothermal Development Project is a major geothermal energy initiative in Kenya, focusing on harnessing geothermal power from the Menengai caldera, located in the Rift Valley region. Spearheaded by the Geothermal Development Company (GDC), the project aims to generate 460 MW of geothermal energy through exploration, well drilling, and power plant construction, contributing to Kenya's sustainable energy goals and reducing reliance on fossil fuels.",
+        "Thematic Area (Geoscientific)": "Geothermal energy",
+        "Website/Link": ""
+    }
+]
