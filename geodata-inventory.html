@@ -5,6 +5,38 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <style>
+        #map { height: 600px; margin-top: 20px; }
+        .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); border-radius: 5px; }
+        .info h4 { margin: 0 0 5px; color: #777; }
+        .legend { line-height: 18px; color: #555; }
+        .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+        .resources-section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .resources-section h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .resources-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .resources-table th, .resources-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        .resources-table th {
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 <body>
     <div id="page-wrapper">
@@ -38,176 +70,353 @@
                     <h2>Geodata Inventory</h2>
                     <p>Explore Africa’s geodata resources interactively.</p>
                 </header>
-                <div class="inventory-content">
-                    <!-- Sidebar -->
-                    <aside class="data-keys">
-                        <h3>Data Keys</h3>
-                        <div>
-                            <h4>Geological Map Scale</h4>
-                            <button class="key"> &lt; 25 K</button>
-                            <button class="key">25-50 K</button>
-                            <button class="key"> &lt; 50-100 K</button>
-                        </div>
-                        <div>
-                            <h4>Environmental Geology</h4>
-                            <button class="key">High</button>
-                            <button class="key">Medium</button>
-                            <button class="key">Low</button>
-                        </div>
-                    </aside>
 
-                    <!-- Map Container -->
-                    <div id="map"></div>
+                <!-- Map Container -->
+                <div id="map"></div>
+
+                <!-- Resources Section -->
+                <div class="resources-section">
+                    <h3>Available Geodata Resources</h3>
+                    <table class="resources-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MAP SCALES</td>
+                                <td>25-50 K, <50-100 K, 100-250 K, 500-1000 K, 1 mio, > 1000K, No coverage / no data</td>
+                            </tr>
+                            <tr>
+                                <td>Structural Geology</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Metamorphic Geology</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>ENVIRONMENTAL GEOLOGY</td>
+                                <td>Ground Water Assessment, Air Quality, Risk Assessment</td>
+                            </tr>
+                            <tr>
+                                <td>ENGINEERING GEOLOGY</td>
+                                <td>Engineering Mapping, Geohazard</td>
+                            </tr>
+                            <tr>
+                                <td>GEOCHEMISTRY</td>
+                                <td>Soil, Stream</td>
+                            </tr>
+                            <tr>
+                                <td>GEOPHYSICS</td>
+                                <td>Electromagnetic, Magnetic, Gravity, Seismic, Hyperspectral, Radiometric</td>
+                            </tr>
+                            <tr>
+                                <td>HYDROGEOLOGY</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>SOIL</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>LANDUSE</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>MINERAL RESOURCES</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>REMOTE SENSING</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>MINING</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>ENERGY</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>MARINE</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Medical Geology</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>AGROGEOLOGY</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>GEOTHERMAL</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>NUCLEAR ENERGY</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>HYDRO-ELECTRICITY</td>
+                                <td>Hydrology, Hazards, Geology, Mapping</td>
+                            </tr>
+                            <tr>
+                                <td>GREEN ENERGY MINERALS</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>GEOTHERMAL</td>
+                                <td>Energy, Hydrology</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
         </section>
-    </div>
 
-      <!-- Footer -->
+              <!-- Footer -->
       <footer
-        id="footer"
-        style="
-          background-color: #f9f9f9;
-          text-align: center;
-          padding: 10px 20px;
-          font-family: Arial, sans-serif;
-        "
-      >
-        <div class="container">
-          <!-- Logo -->
-          <div style="margin-bottom: 20px">
-            <img
-              src="images\agdp.png"
-              alt="AGDP Logo"
-              style="height: 50px; display: block; margin: 0 auto"
-            />
-          </div>
+      id="footer"
+      style="
+        background-color: #f9f9f9;
+        text-align: center;
+        padding: 10px 20px;
+        font-family: Arial, sans-serif;
+      "
+    >
+      <div class="container">
+        <!-- Logo -->
+        <div style="margin-bottom: 20px">
+          <img
+            src="images\agdp.png"
+            alt="AGDP Logo"
+            style="height: 50px; display: block; margin: 0 auto"
+          />
+        </div>
 
-          <!-- Description -->
-          <p
+        <!-- Description -->
+        <p
+          style="
+            font-size: 14px;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto 10px;
+          "
+        >
+          Empowering Africa with accessible geospatial data to drive
+          sustainable development and innovation.
+        </p>
+
+        <!-- Links -->
+        <div style="margin-bottom: 20px">
+          <a
+            href="about.html"
             style="
+              margin: 0 15px;
               font-size: 14px;
-              color: #555;
-              max-width: 600px;
-              margin: 0 auto 10px;
+              color: #333;
+              text-decoration: none;
+            "
+            >About</a
+          >
+          <a
+            href="geodata-inventory.html"
+            style="
+              margin: 0 15px;
+              font-size: 14px;
+              color: #333;
+              text-decoration: none;
+            "
+            >Geodata Inventory</a
+          >
+          <a
+            href="geodata-platforms.html"
+            style="
+              margin: 0 15px;
+              font-size: 14px;
+              color: #333;
+              text-decoration: none;
+            "
+            >Geodata Platforms</a
+          >
+          <a
+            href="african-projects.html"
+            style="
+              margin: 0 15px;
+              font-size: 14px;
+              color: #333;
+              text-decoration: none;
             "
           >
-            Empowering Africa with accessible geospatial data to drive
-            sustainable development and innovation.
-          </p>
-
-          <!-- Links -->
-          <div style="margin-bottom: 20px">
-            <a
-              href="about.html"
-              style="
-                margin: 0 15px;
-                font-size: 14px;
-                color: #333;
-                text-decoration: none;
-              "
-              >About</a
-            >
-            <a
-              href="geodata-inventory.html"
-              style="
-                margin: 0 15px;
-                font-size: 14px;
-                color: #333;
-                text-decoration: none;
-              "
-              >Geodata Inventory</a
-            >
-            <a
-              href="geodata-platforms.html"
-              style="
-                margin: 0 15px;
-                font-size: 14px;
-                color: #333;
-                text-decoration: none;
-              "
-              >Geodata Platforms</a
-            >
-            <a
-              href="african-projects.html"
-              style="
-                margin: 0 15px;
-                font-size: 14px;
-                color: #333;
-                text-decoration: none;
-              "
-            >
-              African Projects</a
-            >
-            <a
-              href="contact.html"
-              style="
-                margin: 0 15px;
-                font-size: 14px;
-                color: #333;
-                text-decoration: none;
-              "
-              >Contact Us</a
-            >
-          </div>
-
-          <!-- Social Media Icons -->
-          <div>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              style="margin: 0 10px; color: #555; text-decoration: none"
-            >
-              <i class="icon brands fa-twitter" style="font-size: 20px"></i>
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              style="margin: 0 10px; color: #555; text-decoration: none"
-            >
-              <i class="icon brands fa-facebook-f" style="font-size: 20px"></i>
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              style="margin: 0 10px; color: #555; text-decoration: none"
-            >
-              <i class="icon brands fa-instagram" style="font-size: 20px"></i>
-            </a>
-            <a
-              href="https://github.com"
-              target="_blank"
-              style="margin: 0 10px; color: #555; text-decoration: none"
-            >
-              <i class="icon brands fa-github" style="font-size: 20px"></i>
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              style="margin: 0 10px; color: #555; text-decoration: none"
-            >
-              <i class="icon brands fa-linkedin-in" style="font-size: 20px"></i>
-            </a>
-          </div>
+            African Projects</a
+          >
+          <a
+            href="contact.html"
+            style="
+              margin: 0 15px;
+              font-size: 14px;
+              color: #333;
+              text-decoration: none;
+            "
+            >Contact Us</a
+          >
         </div>
-      </footer>
+
+        <!-- Social Media Icons -->
+        <div>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            style="margin: 0 10px; color: #555; text-decoration: none"
+          >
+            <i class="icon brands fa-twitter" style="font-size: 20px"></i>
+          </a>
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            style="margin: 0 10px; color: #555; text-decoration: none"
+          >
+            <i class="icon brands fa-facebook-f" style="font-size: 20px"></i>
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            style="margin: 0 10px; color: #555; text-decoration: none"
+          >
+            <i class="icon brands fa-instagram" style="font-size: 20px"></i>
+          </a>
+          <a
+            href="https://github.com"
+            target="_blank"
+            style="margin: 0 10px; color: #555; text-decoration: none"
+          >
+            <i class="icon brands fa-github" style="font-size: 20px"></i>
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            style="margin: 0 10px; color: #555; text-decoration: none"
+          >
+            <i class="icon brands fa-linkedin-in" style="font-size: 20px"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+    </div>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZHVuZ2VvbnMiLCJhIjoiY201bnh1NHh2MGQyNTJsczc1NjcxeHA2NyJ9.rn_XDh_4akjbENWbBD22FA'; // Replace with your Mapbox token
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/dungeons/cm5s5u9b500lk01s320ftb5hw', // Use Africa-focused style URL
-            center: [20, 0], // Center of Africa
-            zoom: 2,
-            interactive: false // Disable all interactions (zoom, pan, rotate)
-        });
+        // Initialize the map
+        var map = L.map('map').setView([0, 20], 3);
+
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Fetch and add GeoJSON data
+        fetch('assets/A2.geojson')
+            .then(response => response.json())
+            .then(data => {
+                // Define a function to set styles based on properties
+                function getColor(value) {
+                    return value === "Yes" ? '#31a354' : '#d73027';
+                }
+
+                function style(feature) {
+                    return {
+                        fillColor: getColor(feature.properties['25_50K']),
+                        weight: 1,
+                        opacity: 1,
+                        color: 'white',
+                        dashArray: '3',
+                        fillOpacity: 0.7
+                    };
+                }
+
+                // Interactivity
+                function highlightFeature(e) {
+                    var layer = e.target;
+
+                    layer.setStyle({
+                        weight: 5,
+                        color: '#666',
+                        dashArray: '',
+                        fillOpacity: 0.7
+                    });
+
+                    info.update(layer.feature.properties);
+                }
+
+                function resetHighlight(e) {
+                    geojson.resetStyle(e.target);
+                    info.update();
+                }
+
+                function zoomToFeature(e) {
+                    map.fitBounds(e.target.getBounds());
+                }
+
+                function onEachFeature(feature, layer) {
+                    layer.on({
+                        mouseover: highlightFeature,
+                        mouseout: resetHighlight,
+                        click: zoomToFeature
+                    });
+                }
+
+                // Add GeoJSON to the map
+                var geojson = L.geoJSON(data, {
+                    style: style,
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+
+                // Info control
+                var info = L.control();
+
+                info.onAdd = function (map) {
+                    this._div = L.DomUtil.create('div', 'info');
+                    this.update();
+                    return this._div;
+                };
+
+                info.update = function (props) {
+                    this._div.innerHTML = '<h4>Geodata Availability</h4>' +
+                        (props ? '<b>' + props.NAME + '</b><br />' +
+                            '25-50K: ' + props['25_50K'] + '<br>' +
+                            '50-100K: ' + props['50_100K'] : 'Hover over a country');
+                };
+
+                info.addTo(map);
+
+                // Add a legend
+                var legend = L.control({ position: 'bottomright' });
+
+                legend.onAdd = function (map) {
+                    var div = L.DomUtil.create('div', 'info legend'),
+                        grades = ["Yes", "No"],
+                        labels = ["Available", "Not Available"],
+                        colors = ['#31a354', '#d73027'];
+
+                    for (var i = 0; i < grades.length; i++) {
+                        div.innerHTML += '<i style="background:' + colors[i] + '"></i> ' + labels[i] + '<br>';
+                    }
+
+                    return div;
+                };
+
+                legend.addTo(map);
+            })
+            .catch(error => console.error('Error loading GeoJSON:', error));
     </script>
 </body>
 </html>

@@ -1,0 +1,207 @@
+[
+    {
+        "MAP SCALES": [
+            "25-50 K"
+        ]
+    },
+    {
+        "MAP SCALES": [
+            "<50-100 K"
+        ]
+    },
+    {
+        "MAP SCALES": [
+            "100 -250 K"
+        ]
+    },
+    {
+        "MAP SCALES": [
+            "500-1000 K"
+        ]
+    },
+    {
+        "MAP SCALES": [
+            "1 mio"
+        ]
+    },
+    {
+        "MAP SCALES": [
+            "> 1000K"
+        ]
+    },
+    {
+        "MAP SCALES": [
+            "No coverage / no data"
+        ]
+    },
+    {
+        "Structural Geology": [
+            ""
+        ]
+    },
+    {
+        "Metamorphic Geology": [
+            ""
+        ]
+    },
+    {
+        "ENVIRONMENTAL GEOLOGY": [
+            "Ground Water Assessment"
+        ]
+    },
+    {
+        "ENVIRONMENTAL GEOLOGY": [
+            "Air Quality"
+        ]
+    },
+    {
+        "ENVIRONMENTAL GEOLOGY": [
+            "Risk Assessment"
+        ]
+    },
+    {
+        "ENGINEERING GEOLOGY ": [
+            "Engineering Mapping"
+        ]
+    },
+    {
+        "ENGINEERING GEOLOGY ": [
+            "Geohazard"
+        ]
+    },
+    {
+        "GEOCHEMISTRY": [
+            "Soil"
+        ]
+    },
+    {
+        "GEOCHEMISTRY": [
+            "Stream"
+        ]
+    },
+    {
+        "GEOPHYSICS": [
+            "Electromagnetic"
+        ]
+    },
+    {
+        "GEOPHYSICS": [
+            "Magnetic"
+        ]
+    },
+    {
+        "GEOPHYSICS": [
+            " Gravity"
+        ]
+    },
+    {
+        "GEOPHYSICS": [
+            "Seismic"
+        ]
+    },
+    {
+        "GEOPHYSICS": [
+            "Hyperspectral"
+        ]
+    },
+    {
+        "GEOPHYSICS": [
+            "Radiometric"
+        ]
+    },
+    {
+        "HYDROGEOLOGY": [
+            ""
+        ]
+    },
+    {
+        "SOIL ": [
+            ""
+        ]
+    },
+    {
+        "LANDUSE ": [
+            ""
+        ]
+    },
+    {
+        "MINERAL RESOURCES ": [
+            ""
+        ]
+    },
+    {
+        "REMOTE SENSING": [
+            ""
+        ]
+    },
+    {
+        "MINING": [
+            ""
+        ]
+    },
+    {
+        "ENERGY": [
+            ""
+        ]
+    },
+    {
+        "MARINE": [
+            ""
+        ]
+    },
+    {
+        "Medical Geology": [
+            ""
+        ]
+    },
+    {
+        "AGROGEOLOGY": [
+            ""
+        ]
+    },
+    {
+        "GEOTHERMAL ": [
+            ""
+        ]
+    },
+    {
+        "NUCLEAR ENERGY": [
+            ""
+        ]
+    },
+    {
+        "HYDRO-ELECTRICITY": [
+            "Hydrology"
+        ]
+    },
+    {
+        "HYDRO-ELECTRICITY": [
+            "Hazards"
+        ]
+    },
+    {
+        "HYDRO-ELECTRICITY": [
+            "Geology"
+        ]
+    },
+    {
+        "HYDRO-ELECTRICITY": [
+            "Mapping"
+        ]
+    },
+    {
+        "GREEN ENERGY MINERALS": [
+            ""
+        ]
+    },
+    {
+        "GEOTHERMAL ": [
+            "Energy"
+        ]
+    },
+    {
+        "GEOTHERMAL ": [
+            "Hydrology"
+        ]
+    }
+]
