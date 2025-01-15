@@ -1846,7 +1846,7 @@ ul.menu li:first-child {
   border: 1px solid #ddd;
 }
 .search-filter button {
-  background-color: #4caf50;
+  background-color: #3CB371;
   color: white;
   cursor: pointer;
 }
@@ -1878,7 +1878,7 @@ article::before {
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(to right, #4caf50, #81c784); /* Adjust colors as needed */
+  background: linear-gradient(to right, #3C341F, #8B4513); /* Adjust colors as needed */
 }
 
 h3 {
@@ -1915,7 +1915,7 @@ h3 {
 .view-project-button {
   padding: 0.5rem 1rem;
   font-size: 0.85rem;
-  background-color: #fcd34d;
+  background-color: #3CB371;
   color: #333;
   text-transform: uppercase;
   text-decoration: none;
@@ -1924,7 +1924,7 @@ h3 {
   transition: background-color 0.3s ease;
 }
 .view-project-button:hover {
-  background-color: #fbbf24;
+  background-color: #556B2F;
 }
 
 @media (max-width: 768px) {
@@ -1935,54 +1935,63 @@ h3 {
 /* afri-platforms */
 .platforms-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible responsive grid */
   gap: 20px;
 }
+
 .platforms-grid a {
   position: relative;
   display: block;
+  text-decoration: none;
 }
+
 .platforms-grid a span {
   position: absolute;
   inset: 0;
-  border: 2px dashed #000;
+  border: 2px dashed #000; /* Dotted border */
   transition: transform 0.3s ease;
   z-index: -1;
 }
+
 .platforms-grid a div {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 350px;
-  width: 100%;
-  border: 2px solid #000;
+  height: 350px; /* Adjust height for upright rectangle */
+  width: 100%; /* Ensure it fits within the grid column */
+  border: 2px solid #000; /* Solid border */
   background: #fff;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 20px; /* Add space inside the card */
+  box-sizing: border-box; /* Ensure padding doesn't add to card size */
   transition: transform 0.3s ease;
 }
-.platforms-grid a div:hover {
+
+.platforms-grid a:hover div {
   transform: translate(-10px, -10px);
 }
+
 .platforms-grid a:hover span {
-  z-index: 0;
+  z-index: 0; /* Bring dotted border on hover */
 }
-.platforms-grid a .logo {
+
+.platforms-grid .logo {
   width: 100%; /* Make the image width 100% of the container */
   height: auto; /* Maintain aspect ratio */
   max-height: 80px; /* Optional: Limit the maximum height */
   object-fit: contain; /* Ensures the entire image fits within the space */
 }
-.platforms-grid a .title {
+
+.platforms-grid .title {
   font-size: 1rem;
   text-transform: uppercase;
   font-weight: bold;
   color: #333;
-  margin-top: 10px;
+  margin-top: 10px; /* Add spacing below the logo */
 }
-.platforms-grid a .description {
+
+.platforms-grid .description {
   font-size: 0.875rem; /* Ensure the font size is small but readable */
   color: #555;
   text-align: center;
@@ -1992,14 +2001,9 @@ h3 {
   text-overflow: ellipsis; /* Add ellipsis for hidden text */
   white-space: normal;
 }
-.platforms-grid a .read-more {
-  color: #4caf50;
-  font-weight: bold;
-  text-decoration: underline;
-  cursor: pointer;
-}
-.platforms-grid a .visit-button {
-  background-color: #4caf50;
+
+.platforms-grid .visit-button {
+  background-color: #3CB371;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -2009,13 +2013,14 @@ h3 {
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
-.platforms-grid a .visit-button:hover {
+
+.platforms-grid .visit-button:hover {
   background-color: #388e3c;
 }
 
 @media screen and (max-width: 768px) {
   .platforms-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
   }
 }
 @media screen and (max-width: 480px) {
@@ -2023,6 +2028,111 @@ h3 {
     grid-template-columns: repeat(1, 1fr); /* 1 column on very small screens */
   }
 }
+section .button {
+  background-color: #3CB371;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+section .button:hover {
+  background-color: #388e3c;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.8); /* Black background with transparency */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto; /* Centered */
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.highlight-country {
+  color: #4caf50; /* Use a distinct color for the country names */
+  font-weight: bold; /* Make the country names bold */
+}
+
+.platform-map-image {
+  width: 100%; /* Make the image take up the full width of its container */
+  max-width: 800px; /* Increase maximum width for larger screens */
+  height: auto; /* Maintain aspect ratio */
+  margin: 20px auto; /* Add spacing and center the image */
+  display: block; /* Ensure it is centered */
+  border: 2px solid #ddd; /* Optional: Add a subtle border for better presentation */
+  border-radius: 8px; /* Add rounded corners */
+}
+
+/* Close Button */
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+}
+
+.platform-map-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #388e3c;
+}
+
 /* Actions */
 ul.actions {
   display: -moz-flex;
@@ -2272,12 +2382,8 @@ button.small,
 /* Header */
 #header {
   text-align: center;
-  padding: 3em 0 0 0;
-  background-color: #fff;
-  background-image: url("images/banner.jpg"), url("images/banner.jpg"), url("images/banner.jpg");
-  background-position: top left, top left, top left;
-  background-size: 100% 6em, 100% 6em, auto;
-  background-repeat: no-repeat, no-repeat, repeat;
+  padding: 0 0 0 0;
+  background-color: #5B3A29;
 }
 #header h1 {
   padding: 0 0 2.75em 0;
@@ -2289,9 +2395,27 @@ button.small,
   border: 0;
 }
 
+/* Logo and Site Name */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 80px; /* Adjust logo size */
+  width: auto; /* Maintain aspect ratio */
+  margin-right: 10px;
+}
+
+.site-name {
+  font-size: 14pt; /* Adjust font size */
+  line-height: 1.5em;
+  color: #fff; /* Match the design color scheme */
+}
+
 #nav {
   cursor: default;
-  background-color: #3e2723;
+  background-color: #5B3A29;
   background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");
   background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");
   background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");
@@ -2303,7 +2427,7 @@ button.small,
   display: block;
   width: 100%;
   height: 0.75em;
-  background-color: #f0f4c3;
+  background-color: #D2B48C;
   background-image: url("images/bg01.png");
 }
 #nav > ul {
@@ -2343,10 +2467,10 @@ button.small,
   bottom: -0.5em;
   left: 50%;
   margin-left: -0.375em;
-  background-color: #28a745;
+  background-color: #8FBC8F;
 }
 #nav > ul > li.current a {
-  color: #28a745;
+  color: #8FBC8F;
 }
 #nav > ul > li.active a {
   color: #fff;
@@ -2358,6 +2482,49 @@ button.small,
   display: none;
 }
 
+#nav ul li.dropdown ul {
+  display: none; /* Hide dropdown initially */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 10px;
+  z-index: 1000;
+}
+
+#nav ul li.dropdown:hover ul {
+  display: block; /* Show dropdown on hover */
+}
+
+#nav ul li.dropdown ul li {
+  margin: 0;
+}
+
+#nav ul li.dropdown ul li a {
+  color: #888; /* Match link color */
+  padding: 5px 15px;
+  display: block;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+#nav ul li.dropdown ul li a:hover {
+  color: #5B3A29; /* Highlight dropdown links */
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #nav ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+}
 /* Dropotron */
 .dropotron {
   background-image: -moz-linear-gradient(top, rgba(0,0,0,0.3), rgba(0,0,0,0)), url("images/bg01.png");
@@ -2390,45 +2557,6 @@ button.small,
   font-size: 0.9em;
   padding-top: 0;
   margin-top: -1px;
-}
-
-/* Banner */
-#banner {
-  background-image: url("../../images/banner.jpg");
-  background-position: center center;
-  background-size: cover;
-  height: 28em;
-  text-align: center;
-  position: relative;
-}
-#banner header {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #212121;
-  background: rgba(27, 27, 27, 0.75);
-  color: #fff;
-  padding: 1.5em 0;
-}
-#banner header h2 {
-  display: inline-block;
-  margin: 0;
-  font-size: 1.25em;
-  vertical-align: middle;
-}
-#banner header h2 em {
-  opacity: 0.75;
-}
-#banner header h2 a {
-  border-bottom-color: rgba(255, 255, 255, 0.5);
-}
-#banner header h2 a:hover {
-  border-bottom-color: transparent;
-}
-#banner header .button {
-  vertical-align: middle;
-  margin-left: 1em;
 }
 
 /* Wrapper */
@@ -2540,7 +2668,7 @@ button.small,
   }
   /* Header */
   #header {
-    padding: 2em 0 0 0;
+    padding: 1em 0 0 0;
   }
   #header h1 {
     padding: 0 0 1.75em 0;
@@ -2551,7 +2679,7 @@ button.small,
   }
   /* Wrapper */
   .wrapper {
-    padding: 3em 0 1em 0;
+    padding: 1em 0 1em 0;
   }
   /* CTA */
   #cta {

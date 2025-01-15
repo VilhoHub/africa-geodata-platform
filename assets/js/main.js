@@ -18,6 +18,7 @@
 			mobile:    [ '481px',   '736px'  ],
 			mobilep:   [ null,      '480px'  ]
 		});
+		
 
 	// Play initial animations on page load.
 		$window.on('load', function() {
