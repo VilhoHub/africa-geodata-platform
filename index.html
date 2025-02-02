@@ -1,303 +1,590 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Africa Geoscience Data Platform</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  </head>
-  <body class="is-preload">
-    <div id="page-wrapper">
-        
-<!-- Header -->
-<header id="header">
-    <div class="nav-container">
-      <!-- Navigation Menu -->
-      <nav id="nav">
-        <ul>
-          <li class="current"><a href="index.html">Home</a></li>
-          <li><a href="geodata-inventory.html">Geodata Inventory</a></li>
-          <li><a href="african-projects.html">African Projects</a></li>
-          <li><a href="geodata-platforms.html">Geodata Platforms</a></li>
-          <li><a href="about.html">About AGDP</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li class="dropdown">
-            <a href="#">Language</a>
-            <ul>
-              <li><a href="#">English</a></li>
-              <li><a href="#">French</a></li>
-              <li><a href="#">Portuguese</a></li>
-              <li><a href="#">Swahili</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  
 
-      <!-- Hero Section -->
-      <section id="hero" class="wrapper style2">
-        <div class="container">
-          <div class="row">
-            <div class="col-6">
-              <h2>Welcome to the Africa Geoscience Data Platform</h2>
-              <p>
-                Your gateway to geospatial data, innovative projects, and
-                powerful platforms across Africa.
-              </p>
+<head>
+  <title>Africa Geoscience Data Platform</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    #map-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start; /* Align items to the top */
+    height: 500px; /* Reduce height slightly */
+    margin-top: -20px; /* Move it slightly higher */
+    gap: 20px;
+    padding: 10px 20px; /* Reduce padding */
+    }
 
-              <table class="summary-table">
-                <thead>
-                  <tr>
-                    <th>Platform Name</th>
-                    <th>Category</th>
-                    <th>Region</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Africa GeoPortal</td>
-                    <td>Mapping</td>
-                    <td>Pan-African</td>
-                    <td><a href="no-sidebar.html">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>Digital Earth Africa</td>
-                    <td>Earth Observation</td>
-                    <td>Pan-African</td>
-                    <td><a href="left-sidebar.html">View</a></td>
-                  </tr>
-                  <tr>
-                    <td>Geoscience Africa</td>
-                    <td>Geological Data</td>
-                    <td>Southern Africa</td>
-                    <td><a href="#">View</a></td>
-                  </tr>
-                </tbody>
-              </table>
-              
-            </div>
-            <div class="col-6">
-              <div
-                id="map"
-                style="
-                  width: 100%;
-                  height: 300px;
-                  border: 2px solid #ccc;
-                  margin-top: 10px;
-                "
-              ></div>
-            </div>
-          </div>
+    #map {
+      width: 65%;
+      height: 100%;
+      background-color: white !important;
+    }
+
+    .section {
+      margin-bottom: 6px;
+      border-radius: 4px;
+      background: white;
+      border: 1px solid #e0e0e0;
+    }
+
+    .section-title {
+      padding: 8px 12px;
+      font-weight: 600;
+      font-size: 0.95em;
+      cursor: pointer;
+      background: #f8f9fa;
+      color: #2e7d32;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .section-title:hover {
+      background: #f1f8e9;
+    }
+
+    .section-content {
+      display: none;
+      padding: 4px;
+      /* Reduced padding */
+      max-height: 180px;
+      padding: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .category {
+      padding: 5px 10px;
+      /* Reduced padding */
+      margin: 2px 0;
+      /* Reduced margin */
+      background: white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      font-size: 0.75em;
+      /* Smaller font size for categories */
+      color: #555;
+      line-height: 1.4;
+      /* Added for better readability */
+    }
+
+    .category:hover {
+      background: #f1f8e9;
+      border-color: #c8e6c9;
+      color: #2e7d32;
+      transform: translateX(4px);
+    }
+
+    .expand-icon {
+      font-size: 0.75em;
+      /* Smaller icon */
+      transition: transform 0.3s ease;
+      color: #2e7d32;
+    }
+
+    .expanded .expand-icon {
+      transform: rotate(90deg);
+    }
+
+    .section-content::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .section-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 3px;
+    }
+
+    .section-content::-webkit-scrollbar-thumb {
+      background: #c8e6c9;
+      border-radius: 3px;
+    }
+
+    .section-content::-webkit-scrollbar-thumb:hover {
+      background: #a5d6a7;
+    }
+
+    .sidebar-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+
+    .sidebar-description {
+      font-size: 0.9em;
+      color: #666;
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    /* Sidebar */
+    #sidebar {
+    width: 30%; /* Adjust sidebar width */
+}
+
+    .sidebar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+    gap: 10px; /* Space between columns */
+    width: 100%; /* Ensures full width of sidebar */
+}
+
+.section {
+    width: 100%; /* Ensures the sections fit inside their columns */
+}
+
+.section-title {
+    padding: 8px 12px;
+    font-weight: 600;
+    font-size: 0.95em;
+    cursor: pointer;
+    background: #f8f9fa;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.section-content {
+    display: none;
+    grid-column: span 2; /* Ensures content spans full width under the title */
+}
+
+    .sidebar h2 {
+      font-size: 18px;
+      /* Adjust heading size */
+      margin-bottom: 15px;
+      /* Space below heading */
+      color: #5B3A29;
+      /* Match the design color scheme */
+    }
+
+    .sidebar ul {
+      list-style: none;
+      /* Remove default list styling */
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 10px;
+      /* Space between items */
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      /* Remove underline */
+      color: #5B3A29;
+      /* Dark color for text */
+      font-size: 14px;
+      /* Adjust font size */
+      display: block;
+      /* Make links block-level for easier clicking */
+      padding: 8px 10px;
+      /* Adjust padding */
+      border-radius: 4px;
+      /* Rounded corners */
+      transition: background-color 0.3s ease;
+      /* Smooth hover effect */
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #8FBC8F;
+      /* Highlight color on hover */
+      color: #fff;
+      /* White text on hover */
+    }
+
+    /* Responsiveness */
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        /* Full width on smaller screens */
+        max-height: none;
+        /* Remove height limit */
+        padding: 10px;
+        /* Adjust padding */
+      }
+
+      .sidebar h2 {
+        font-size: 16px;
+        /* Smaller heading on smaller screens */
+      }
+
+      .sidebar ul li a {
+        font-size: 12px;
+        /* Smaller font size on smaller screens */
+      }
+    }
+
+    #interactive-map {
+    padding-top: 10px; /* Reduce top padding */
+    margin-bottom: 0; /* Remove unnecessary space below */
+}
+
+.legend {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.legend-box {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border: 1px solid #ccc;
+}
+
+.available {
+    background-color: #2e7d32;
+}
+  </style>
+</head>
+
+<body class="is-preload">
+  <div id="page-wrapper">
+    <!-- Header -->
+    <header id="header">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="images/agdp_logo.png" alt="AGDP Logo">
+          <span class="site-name">Africa Geoscience Data Platform</span>
         </div>
-      </section>
+        <!-- Navigation Menu -->
+        <nav id="nav">
+          <ul>
+            <li class="current"><a href="index.html">Home</a></li>
+            <li><a href="geodata-inventory.html">Geodata Inventory</a></li>
+            <li><a href="african-projects.html">African Projects</a></li>
+            <li><a href="geodata-platforms.html">Geodata Platforms</a></li>
+            <li><a href="about.html">About AGDP</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li class="dropdown">
+              <a href="#">Language</a>
+              <ul>
+                <li><a href="#">English</a></li>
+                <li><a href="#">French</a></li>
+                <li><a href="#">Portuguese</a></li>
+                <li><a href="#">Swahili</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-      <!-- Highlights -->
-      <section class="wrapper style1">
-        <div class="container">
-          <div class="row gtr-200">
-            <section class="col-4 col-12-narrower">
-              <div id="geodata-inventory" class="box highlight">
-                <i class="icon solid major fa-database"></i>
-                <h3>Geodata Inventory</h3>
-                <p>
-                  Access comprehensive geospatial data for effective
-                  decision-making and development planning.
-                </p>
-                <a href="geodata-inventory.html" class="button small">Learn More</a>
-              </div>
-            </section>
-            <section class="col-4 col-12-narrower">
-              <div id="african-projects" class="box highlight">
-                <i class="icon solid major fa-globe-africa"></i>
-                <h3>African Projects</h3>
-                <p>
-                  Explore innovative projects utilizing geospatial technologies
-                  across Africa, driving impactful solutions.
-                </p>
-                <a href="african-projects.html" class="button small"
-                  >View Projects</a
-                >
-              </div>
-            </section>
-            <section class="col-4 col-12-narrower">
-              <div id="geodata-platforms" class="box highlight">
-                <i class="icon solid major fa-tools"></i>
-                <h3>Geodata Platforms</h3>
-                <p>
-                  Discover powerful platforms and tools for geospatial data
-                  visualization and analysis.
-                </p>
-                <a href="geodata-platforms.html" class="button small"
-                  >Explore Platforms</a
-                >
-              </div>
-            </section>
-          </div>
-        </div>
-      </section>
+    <!-- Hero Section -->
+    <section id="interactive-map" style="background-color: white;">
+      <header class="major">
+        <h2>Geodata Inventory</h2>
+        <p>Explore geospatial data across Africa.</p>
+      </header>
+      <div class="sidebar-title">Available Data Categories</div>
+      <div class="sidebar-description">Hover over a category to visualize which country has the data.</div>
+      <div id="map-container">
+        <div id="sidebar"></div>
+        <div id="map"></div>
 
-      <!-- Footer -->
-      <footer
-        id="footer"
-        style="
-          background-color: #f9f9f9;
-          text-align: center;
-          padding: 10px 20px;
-          font-family: Arial, sans-serif;
-        "
-      >
-        <div class="container">
-          <!-- Logo -->
-          <div style="margin-bottom: 20px">
-            <img
-              src="images\agdp.png"
-              alt="AGDP Logo"
-              style="height: 50px; display: block; margin: 0 auto"
-            />
-          </div>
+      </div>
+    </section>
 
-          <!-- Description -->
-          <p
-            style="
-              font-size: 14px;
-              color: #555;
-              max-width: 600px;
-              margin: 0 auto 10px;
-            "
-          >
-            Empowering Africa with accessible geospatial data to drive
-            sustainable development and innovation.
-          </p>
-
-          <!-- Links -->
-          <div style="margin-bottom: 20px">
-            <a
-              href="about.html"
-              style="
-                margin: 0 15px;
-                font-size: 14px;
-                color: #333;
-                text-decoration: none;
-              "
-              >About</a
-            >
-            <a
-              href="geodata-inventory.html"
-              style="
-                margin: 0 15px;
-                font-size: 14px;
-                color: #333;
-                text-decoration: none;
-              "
-              >Geodata Inventory</a
-            >
-            <a
-              href="geodata-platforms.html"
-              style="
-                margin: 0 15px;
-                font-size: 14px;
-                color: #333;
-                text-decoration: none;
-              "
-              >Geodata Platforms</a
-            >
-            <a
-              href="african-projects.html"
-              style="
-                margin: 0 15px;
-                font-size: 14px;
-                color: #333;
-                text-decoration: none;
-              "
-            >
-              African Projects</a
-            >
-            <a
-              href="contact.html"
-              style="
-                margin: 0 15px;
-                font-size: 14px;
-                color: #333;
-                text-decoration: none;
-              "
-              >Contact Us</a
-            >
-          </div>
-
-          <!-- Social Media Icons -->
-          <div>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              style="margin: 0 10px; color: #555; text-decoration: none"
-            >
-              <i class="icon brands fa-twitter" style="font-size: 20px"></i>
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              style="margin: 0 10px; color: #555; text-decoration: none"
-            >
-              <i class="icon brands fa-facebook-f" style="font-size: 20px"></i>
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              style="margin: 0 10px; color: #555; text-decoration: none"
-            >
-              <i class="icon brands fa-instagram" style="font-size: 20px"></i>
-            </a>
-            <a
-              href="https://github.com"
-              target="_blank"
-              style="margin: 0 10px; color: #555; text-decoration: none"
-            >
-              <i class="icon brands fa-github" style="font-size: 20px"></i>
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              style="margin: 0 10px; color: #555; text-decoration: none"
-            >
-              <i class="icon brands fa-linkedin-in" style="font-size: 20px"></i>
-            </a>
-          </div>
-        </div>
-      </footer>
-    </div>
-
-    <!-- Scripts -->
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const dropdown = document.querySelector(".dropdown");
-        const dropdownMenu = dropdown.querySelector("ul");
+      var map = L.map('map', {
+    zoomControl: false,  // Removes zoom controls
+    scrollWheelZoom: false, // Disables zooming with mouse scroll
+    doubleClickZoom: false, // Disables double-click zooming
+    touchZoom: false // Disables touch-based zooming
+}).setView([0, 20], 3);
 
-        dropdown.addEventListener("click", (e) => {
-          e.stopPropagation(); // Prevent the event from bubbling up
-          dropdownMenu.classList.toggle("show");
+
+      L.tileLayer('https://tiles.wmflabs.org/humanitarian/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 3,
+        minZoom: 3
+      }).addTo(map);
+
+      // Define the bounds for Africa
+      var africaBounds = [
+        [-35.5, -17.5],
+        [37.5, 51.5]
+      ];
+
+      map.setMaxBounds(africaBounds);
+
+      // Define collapsible sections
+      const categories = {
+        "Map Scales": ["25_50K", "50_100K", "100_250K", "500_1000K", "1mio", "_More_Than", "No_Data"],
+        "Geology": ["Structural", "Metamorphi"],
+        "Environmental Geology": ["Ground_Wat", "Air_Qualit", "Risk_Asses"],
+        "Engineering Geology": ["Engineerin", "Geohazard_"],
+        "Geochemistry": ["Soil_GEOCH", "Stream_GEO"],
+        "Geophysics": ["Electromag", "Magnetic_G", "Gravity_GE", "Seismic_GE", "Hyperspect", "Radiometri"],
+        "Hydrogeology & Soil": ["HYDROGEOLO", "SOIL"],
+        "Land Use & Minerals": ["LANDUSE", "MINERAL RE"],
+        "Remote Sensing & Mining": ["REMOTE SEN", "MINING"],
+        "Energy & Marine": ["ENERGY", "MARINE"],
+        "Others": ["Medical Ge", "AGROGEOLOG", "NUCLEAR EN", "Hydrology_", "Hazards_HY", "Geology_HY", "Mapping_HY", "Energy_GEO", "Hydrology2"]
+      };
+
+      const fieldMappings = {
+        "25_50K": "MAP SCALES (25-50 K)",
+        "50_100K": "MAP SCALES (<50-100 K)",
+        "100_250K": "MAP SCALES (100-250 K)",
+        "500_1000K": "MAP SCALES (500-1000 K)",
+        "1mio": "MAP SCALES (1 mio)",
+        "_More_Than": "MAP SCALES (> 1000K)",
+        "No_Data": "MAP SCALES (No coverage / no data)",
+        "Structural": "Structural Geology",
+        "Metamorphi": "Metamorphic Geology",
+        "Ground_Wat": "ENVIRONMENTAL GEOLOGY (Ground Water Assessment)",
+        "Air_Qualit": "ENVIRONMENTAL GEOLOGY (Air Quality)",
+        "Risk_Asses": "ENVIRONMENTAL GEOLOGY (Risk Assessment)",
+        "Engineerin": "ENGINEERING GEOLOGY (Engineering Mapping)",
+        "Geohazard_": "ENGINEERING GEOLOGY (Geohazard)",
+        "Soil_GEOCH": "GEOCHEMISTRY (Soil)",
+        "Stream_GEO": "GEOCHEMISTRY (Stream)",
+        "Electromag": "GEOPHYSICS (Electromagnetic)",
+        "Magnetic_G": "GEOPHYSICS (Magnetic)",
+        "Gravity_GE": "GEOPHYSICS (Gravity)",
+        "Seismic_GE": "GEOPHYSICS (Seismic)",
+        "Hyperspect": "GEOPHYSICS (Hyperspectral)",
+        "Radiometri": "GEOPHYSICS (Radiometric)",
+        "HYDROGEOLO": "HYDROGEOLOGY",
+        "SOIL": "SOIL",
+        "LANDUSE": "LANDUSE",
+        "MINERAL RE": "MINERAL RESOURCES",
+        "REMOTE SEN": "REMOTE SENSING",
+        "MINING": "MINING",
+        "ENERGY": "ENERGY",
+        "MARINE": "MARINE",
+        "Medical Ge": "Medical Geology",
+        "AGROGEOLOG": "AGROGEOLOGY",
+        "NUCLEAR EN": "NUCLEAR ENERGY",
+        "Hydrology_": "HYDRO-ELECTRICITY (Hydrology)",
+        "Hazards_HY": "HYDRO-ELECTRICITY (Hazards)",
+        "Geology_HY": "HYDRO-ELECTRICITY (Geology)",
+        "Mapping_HY": "HYDRO-ELECTRICITY (Mapping)",
+        "Energy_GEO": "GEOTHERMAL (Energy)",
+        "Hydrology2": "GEOTHERMAL (Hydrology)"
+      };
+
+      let geojsonLayer;
+
+      fetch('assets/A2.geojson')
+  .then(response => response.json())
+  .then(data => {
+    geojsonLayer = L.geoJSON(data, {
+      style: feature => ({
+        fillColor: "white",
+        weight: 1,
+        color: 'black',
+        fillOpacity: 0.5
+      }),
+      onEachFeature: (feature, layer) => {
+        layer.on({ click: e => map.fitBounds(e.target.getBounds()) });
+      }
+    }).addTo(map);
+
+    // Create a custom legend control
+var legend = L.control({ position: "bottomright" });
+
+legend.onAdd = function (map) {
+    var div = L.DomUtil.create("div", "legend");
+    div.innerHTML += '<div class="legend-item"><span class="legend-box available"></span> Available</div>';
+    return div;
+};
+
+// Add the legend to the map
+legend.addTo(map);
+
+
+    const sidebar = document.getElementById("sidebar");
+
+    // Create a wrapper div for the grid layout
+    const sidebarGrid = document.createElement("div");
+    sidebarGrid.classList.add("sidebar-grid");
+
+    Object.keys(categories).forEach(section => {
+      let sectionDiv = document.createElement("div");
+      sectionDiv.classList.add("section");
+
+      let titleDiv = document.createElement("div");
+      titleDiv.classList.add("section-title");
+      titleDiv.innerHTML = `${section} <span class="expand-icon">▶</span>`;
+
+      let contentDiv = document.createElement("div");
+      contentDiv.classList.add("section-content");
+
+      categories[section].forEach(shortName => {
+        let categoryDiv = document.createElement("div");
+        categoryDiv.classList.add("category");
+        categoryDiv.innerText = fieldMappings[shortName];
+
+        categoryDiv.addEventListener("mouseover", function () {
+          geojsonLayer.eachLayer(layer => {
+            if (layer.feature.properties[shortName] === "Yes") {
+              layer.setStyle({ fillColor: "#2e7d32", fillOpacity: 0.8 });
+            }
+          });
         });
 
-        // Hide the dropdown menu when clicking outside of it
-        document.addEventListener("click", () => {
-          dropdownMenu.classList.remove("show");
+        categoryDiv.addEventListener("mouseout", function () {
+          geojsonLayer.eachLayer(layer => {
+            layer.setStyle({ fillColor: "white", fillOpacity: 0.5 });
+          });
         });
+
+        contentDiv.appendChild(categoryDiv);
       });
+
+      sectionDiv.appendChild(titleDiv);
+      sectionDiv.appendChild(contentDiv);
+      sidebarGrid.appendChild(sectionDiv); // Add section to the grid
+
+      titleDiv.addEventListener("click", () => {
+        contentDiv.style.display = contentDiv.style.display === "block" ? "none" : "block";
+        titleDiv.classList.toggle("expanded");
+      });
+    });
+
+    sidebar.appendChild(sidebarGrid); // Append the grid to sidebar
+  });
+
     </script>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+
+    <!-- Highlights -->
+    <section class="wrapper style1">
+      <div class="container">
+        <div class="row gtr-200">
+          <section class="col-4 col-12-narrower">
+            <div id="geodata-inventory" class="box highlight">
+              <i class="icon solid major fa-database"></i>
+              <h3>Geodata Inventory</h3>
+              <p>
+                Access comprehensive geospatial data for effective
+                decision-making and development planning.
+              </p>
+              <a href="geodata-inventory.html" class="button small">Learn More</a>
+            </div>
+          </section>
+          <section class="col-4 col-12-narrower">
+            <div id="african-projects" class="box highlight">
+              <i class="icon solid major fa-globe-africa"></i>
+              <h3>African Projects</h3>
+              <p>
+                Explore innovative projects utilizing geospatial technologies
+                across Africa, driving impactful solutions.
+              </p>
+              <a href="african-projects.html" class="button small">View Projects</a>
+            </div>
+          </section>
+          <section class="col-4 col-12-narrower">
+            <div id="geodata-platforms" class="box highlight">
+              <i class="icon solid major fa-tools"></i>
+              <h3>Geodata Platforms</h3>
+              <p>
+                Discover powerful platforms and tools for geospatial data
+                visualization and analysis.
+              </p>
+              <a href="geodata-platforms.html" class="button small">Explore Platforms</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer"
+      style="background-color: #f9f9f9; text-align: center; padding: 10px 20px; font-family: Arial, sans-serif;">
+      <div class="container">
+        <!-- Logo -->
+        <div style="margin-bottom: 20px">
+          <img src="images\agdp.png" alt="AGDP Logo" style="height: 50px; display: block; margin: 0 auto" />
+        </div>
+
+        <!-- Description -->
+        <p style="font-size: 14px; color: #555; max-width: 600px; margin: 0 auto 10px;">
+          Empowering Africa with accessible geospatial data to drive
+          sustainable development and innovation.
+        </p>
+
+        <!-- Links -->
+        <div style="margin-bottom: 20px">
+          <a href="about.html" style="margin: 0 15px; font-size: 14px; color: #333; text-decoration: none;">About</a>
+          <a href="geodata-inventory.html"
+            style="margin: 0 15px; font-size: 14px; color: #333; text-decoration: none;">Geodata Inventory</a>
+          <a href="geodata-platforms.html"
+            style="margin: 0 15px; font-size: 14px; color: #333; text-decoration: none;">Geodata Platforms</a>
+          <a href="african-projects.html"
+            style="margin: 0 15px; font-size: 14px; color: #333; text-decoration: none;">African Projects</a>
+          <a href="contact.html" style="margin: 0 15px; font-size: 14px; color: #333; text-decoration: none;">Contact
+            Us</a>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div>
+          <a href="https://twitter.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none;">
+            <i class="icon brands fa-twitter" style="font-size: 20px"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none;">
+            <i class="icon brands fa-facebook-f" style="font-size: 20px"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none;">
+            <i class="icon brands fa-instagram" style="font-size: 20px"></i>
+          </a>
+          <a href="https://github.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none;">
+            <i class="icon brands fa-github" style="font-size: 20px"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none;">
+            <i class="icon brands fa-linkedin-in" style="font-size: 20px"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const dropdown = document.querySelector(".dropdown");
+      const dropdownMenu = dropdown.querySelector("ul");
+
+      dropdown.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent the event from bubbling up
+        dropdownMenu.classList.toggle("show");
+      });
+
+      // Hide the dropdown menu when clicking outside of it
+      document.addEventListener("click", () => {
+        dropdownMenu.classList.remove("show");
+      });
+    });
+  </script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
 </html>

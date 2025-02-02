@@ -610,15 +610,6 @@
     }
 }
 
-// Sticky Navigation
-#header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: #3e2723;
-}
-
-
 /* afri-projects */
 .search-filter {
     margin-bottom: 20px;
@@ -1153,167 +1144,135 @@ ul li {
 	}
 
 /* Header */
-
-	#header {
-		text-align: center;
-		padding: 0 0 0 0;
-		background-color: #5B3A29;
-
-		h1 {
-			padding: 0 0 2.75em 0;
-			margin: 0;
-
-			a {
-				font-size: 1.5em;
-				letter-spacing: -0.025em;
-				border: 0;
-			}
-		}
+#header {
+	background-color: #fff; /* White background */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Elevation effect */
+	padding: 10px 20px; /* Adjust padding as needed */
+	display: flex;
+	align-items: center;
+	position: sticky; /* Make header sticky */
+	top: 0; /* Stick to the top */
+	z-index: 1000; /* Ensure it stays above other content */
+	justify-content: space-between;
+	flex-wrap: nowrap;
+  
+	.nav-container {
+	  display: flex;
+	  align-items: center;
+	  width: 100%;
+	  max-width: 1200px;
+	  margin: 0;
+	  justify-content: space-between;
+	  flex-wrap: nowrap;
 	}
-
-	/* Logo and Site Name */
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    height: 80px; /* Adjust logo size */
-    width: auto; /* Maintain aspect ratio */
-    margin-right: 10px;
-}
-
-.site-name {
-    font-size: 14pt; /* Adjust font size */
-	line-height: 1.5em;
-    color: #fff; /* Match the design color scheme */
-}
-
-	#nav {
-		cursor: default;
-		background-color: #5B3A29;
-		@include vendor('background-image', ('linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3))', 'url("images/bg01.png")'));
-		padding: 0;
-
-		&:after {
-			content: '';
-			display: block;
-			width: 100%;
-			height: 0.75em;
-			background-color: #D2B48C;
-			background-image: url("images/bg01.png");
-		}
-
-		> ul {
-			margin: 0;
-
-			> li {
-				position: relative;
-				display: inline-block;
-				margin-left: 1em;
-
-				a {
-					color: #c0c0c0;
-					text-decoration: none;
-					border: 0;
-					display: block;
-					padding: 1.5em 0.5em 1.35em 0.5em;
-				}
-
-				&:first-child {
-					margin-left: 0;
-				}
-
-				&:hover {
-					a {
-						color: #fff;
-					}
-				}
-
-				&.current {
-					font-weight: 600;
-
-					&:before {
-						@include vendor('transform', 'rotateZ(45deg)');
-						width: 0.75em;
-						height: 0.75em;
-						content: '';
-						display: block;
-						position: absolute;
-						bottom: -0.5em;
-						left: 50%;
-						margin-left: -0.375em;
-						background-color:#8FBC8F;
-					}
-
-					a {
-						color: #8FBC8F;
-					}
-				}
-
-				&.active {
-					a {
-						color: #fff;
-					}
-
-					&.current {
-						&:before {
-							opacity: 0;
-						}
-					}
-				}
-
-				> ul {
-					display: none;
-				}
-			}
-		}
-	}
-
-	#nav ul li.dropdown ul {
-		display: none; /* Hide dropdown initially */
-		position: absolute;
-		top: 100%;
-		left: 0;
-		background-color: #fff;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		list-style: none;
-		padding: 10px;
-		z-index: 1000;
-	}
-	
-	#nav ul li.dropdown:hover ul {
-		display: block; /* Show dropdown on hover */
-	}
-	
-	#nav ul li.dropdown ul li {
-		margin: 0;
-	}
-	
-	#nav ul li.dropdown ul li a {
-		color: #888; /* Match link color */
-		padding: 5px 15px;
-		display: block;
+  
+	.logo {
+	  display: flex;
+	  align-items: center;
+  
+	  img {
+		height: 50px; /* Adjust logo size */
+		width: auto; /* Maintain aspect ratio */
+		margin-right: 10px;
+	  }
+  
+	  .site-name {
+		font-size: 18pt; /* Adjust font size */
+		color: #5B3A29; /* Match the design color scheme */
+		font-weight: bold;
 		white-space: nowrap; /* Prevent wrapping */
+	  }
 	}
-	
-	#nav ul li.dropdown ul li a:hover {
-		color: #5B3A29; /* Highlight dropdown links */
+  
+	#nav {
+	  margin-left: auto; /* Push nav to the far right */
+  
+	  ul {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		white-space: nowrap; /* Prevent wrapping */
+  
+		li {
+		  margin-left: 20px; /* Adjust spacing between items */
+  
+		  a {
+			color: #5B3A29; /* Dark color for text */
+			text-decoration: none; /* Ensure no underline or dotted lines */
+			padding: 10px 15px;
+			display: block;
+			border-bottom: none; /* Explicitly remove any border */
+  
+			&:hover {
+			  color: #8FBC8F; /* Highlight color on hover */
+			}
+		  }
+  
+		  &.current a {
+			color: #8FBC8F; /* Highlight color for current page */
+			font-weight: bold;
+		  }
+  
+		  &.dropdown {
+			position: relative;
+  
+			ul {
+			  display: none;
+			  position: absolute;
+			  top: 100%;
+			  left: 0;
+			  background-color: #fff;
+			  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			  list-style: none;
+			  padding: 10px;
+			  z-index: 1000;
+  
+			  li {
+				margin: 0;
+  
+				a {
+				  color: #888;
+				  padding: 5px 15px;
+				  display: block;
+				  white-space: nowrap;
+				  text-decoration: none; /* Ensure no underline or dotted lines */
+				  border-bottom: none; /* Explicitly remove any border */
+  
+				  &:hover {
+					color: #5B3A29;
+				  }
+				}
+			  }
+			}
+  
+			&:hover ul {
+			  display: block;
+			}
+		  }
+		}
+	  }
 	}
-
-	/* Responsiveness */
-@media screen and (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #nav ul {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-    }
-}
+  }
+  
+  /* Responsiveness */
+  @media screen and (max-width: 768px) {
+	#header {
+	  flex-direction: column;
+	  align-items: flex-start;
+  
+	  .nav-container {
+		flex-direction: column;
+		align-items: flex-start;
+	  }
+  
+	  #nav ul {
+		flex-direction: column;
+		gap: 10px;
+		width: 100%;
+	  }
+	}
+  }
 
 /* Dropotron */
 

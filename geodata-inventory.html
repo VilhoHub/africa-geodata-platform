@@ -1,422 +1,394 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-    <title>Geodata Inventory - Africa Geoscience Data Platform</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-    <style>
-        #map { height: 600px; margin-top: 20px; }
-        .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); border-radius: 5px; }
-        .info h4 { margin: 0 0 5px; color: #777; }
-        .legend { line-height: 18px; color: #555; }
-        .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
-        .resources-section {
-            margin: 20px 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .resources-section h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        .resources-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .resources-table th, .resources-table td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-        .resources-table th {
-            background-color: #f4f4f4;
-        }
-    </style>
+  <title>Geodata Inventory - Africa Geoscience Data Platform</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* General Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    /* Category Selection Styling */
+    .category-selection {
+      text-align: center;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    #categorySelect {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .selected-categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .selected-category {
+      background-color: #007bff;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .selected-category:hover {
+      background-color: #0056b3;
+    }
+
+    .selected-category::after {
+      content: " ✖";
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    /* Table Styling */
+    #geodata-table {
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #geodata-table th,
+    #geodata-table td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    #geodata-table thead {
+      background: #007bff;
+      color: white;
+    }
+
+    #geodata-table tbody tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+
+    #geodata-table tbody tr:hover {
+      background: #e9ecef;
+    }
+
+    /* Search Box Styling */
+    .dataTables_filter {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+
+    .dataTables_filter input {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      width: 200px;
+    }
+
+    /* Pagination Styling */
+    .dataTables_paginate {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .dataTables_paginate .paginate_button {
+      padding: 8px 12px;
+      margin: 3px;
+      background: #007bff;
+      color: white !important;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dataTables_paginate .paginate_button:hover {
+      background: #0056b3;
+    }
+
+    .dataTables_paginate .paginate_button.current {
+      background: #0056b3;
+      font-weight: bold;
+    }
+
+    /* Chart Container */
+    .chart-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .chart-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    canvas {
+      max-width: 500px;
+    }
+  </style>
 </head>
+
 <body>
-    <div id="page-wrapper">
-        <!-- Header -->
-        <header id="header">
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li class="current"><a href="geodata-inventory.html">Geodata Inventory</a></li>
-                    <li><a href="african-projects.html">African Projects</a></li>
-                    <li><a href="geodata-platforms.html">Geodata Platforms</a></li>
-                    <li><a href="about.html">About AGDP</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li class="dropdown">
-                        <a href="#">Language</a>
-                        <ul>
-                            <li><a href="#">English</a></li>
-                            <li><a href="#">French</a></li>
-                            <li><a href="#">Portuguese</a></li>
-                            <li><a href="#">Swahili</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+  <div id="page-wrapper">
+    <!-- Header -->
+    <header id="header">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="images/agdp_logo.png" alt="AGDP Logo">
+          <span class="site-name">Africa Geoscience Data Platform</span>
+        </div>
+        <!-- Navigation Menu -->
+        <nav id="nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="current"><a href="geodata-inventory.html">Geodata Inventory</a></li>
+            <li><a href="african-projects.html">African Projects</a></li>
+            <li><a href="geodata-platforms.html">Geodata Platforms</a></li>
+            <li><a href="about.html">About AGDP</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li class="dropdown">
+              <a href="#">Language</a>
+              <ul>
+                <li><a href="#">English</a></li>
+                <li><a href="#">French</a></li>
+                <li><a href="#">Portuguese</a></li>
+                <li><a href="#">Swahili</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <section id="main" class="wrapper style1">
+      <div class="container">
+        <header class="major">
+          <h2>Geodata Inventory</h2>
+          <p>Explore Africa’s geodata resources interactively.</p>
         </header>
 
-        <!-- Main Content -->
-        <section id="main" class="wrapper style1">
-            <div class="container">
-                <header class="major">
-                    <h2>Geodata Inventory</h2>
-                    <p>Explore Africa’s geodata resources interactively.</p>
-                </header>
+        <!-- Category Selection -->
+        <div class="category-selection">
+          <label for="categorySelect">Choose a category to display (Up to 7):</label>
+          <select id="categorySelect">
+            <option value="">-- Select a Category --</option>
+            <option value="MAP SCALES (25-50 K)">MAP SCALES (25-50 K)</option>
+            <option value="MAP SCALES (<50-100 K)">MAP SCALES (<50-100 K)</option>
+            <option value="Structural Geology">Structural Geology</option>
+            <option value="Metamorphic Geology">Metamorphic Geology</option>
+            <option value="ENVIRONMENTAL GEOLOGY (Ground Water Assessment)">Ground Water Assessment</option>
+            <option value="GEOPHYSICS (Magnetic)">Geophysics (Magnetic)</option>
+            <option value="HYDROGEOLOGY">Hydrogeology</option>
+            <option value="GEOTHERMAL  (Energy)">Geothermal (Energy)</option>
+            <option value="GEOHERITAGE">Geoheritage</option>
+            <option value="GEOTOURISM">Geotourism</option>
+          </select>
+          <div class="selected-categories" id="selectedCategories"></div>
+        </div>
 
-                <!-- Map Container -->
-                <div id="map"></div>
+        <!-- Searchable Data Table -->
+        <table id="geodata-table" class="display" style="width:100%">
+          <thead>
+            <tr id="table-header">
+              <th>Country</th>
+              <th>Website of Survey</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
 
-                <!-- Resources Section -->
-                <div class="resources-section">
-                    <h3>Available Geodata Resources</h3>
-                    <table class="resources-table">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>MAP SCALES</td>
-                                <td>25-50 K, <50-100 K, 100-250 K, 500-1000 K, 1 mio, > 1000K, No coverage / no data</td>
-                            </tr>
-                            <tr>
-                                <td>Structural Geology</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Metamorphic Geology</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>ENVIRONMENTAL GEOLOGY</td>
-                                <td>Ground Water Assessment, Air Quality, Risk Assessment</td>
-                            </tr>
-                            <tr>
-                                <td>ENGINEERING GEOLOGY</td>
-                                <td>Engineering Mapping, Geohazard</td>
-                            </tr>
-                            <tr>
-                                <td>GEOCHEMISTRY</td>
-                                <td>Soil, Stream</td>
-                            </tr>
-                            <tr>
-                                <td>GEOPHYSICS</td>
-                                <td>Electromagnetic, Magnetic, Gravity, Seismic, Hyperspectral, Radiometric</td>
-                            </tr>
-                            <tr>
-                                <td>HYDROGEOLOGY</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>SOIL</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>LANDUSE</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>MINERAL RESOURCES</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>REMOTE SENSING</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>MINING</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>ENERGY</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>MARINE</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Medical Geology</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>AGROGEOLOGY</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>GEOTHERMAL</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>NUCLEAR ENERGY</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>HYDRO-ELECTRICITY</td>
-                                <td>Hydrology, Hazards, Geology, Mapping</td>
-                            </tr>
-                            <tr>
-                                <td>GREEN ENERGY MINERALS</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>GEOTHERMAL</td>
-                                <td>Energy, Hydrology</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+         <!-- Charts Section -->
+    <div class="chart-container">
+        <div class="chart-box">
+            <h3>Dataset Availability Across Countries</h3>
+            <canvas id="stackedBarChart"></canvas>
+        </div>
 
-            </div>
-        </section>
+        <div class="chart-box">
+            <h3>Dataset Popularity Across Africa</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
 
-              <!-- Footer -->
-      <footer
-      id="footer"
-      style="
+        <div class="chart-box">
+            <h3>Dataset Completeness Per Country</h3>
+            <canvas id="radarChart"></canvas>
+        </div>
+    </div>
+      </div>
+
+      <script>
+        let selectedColumns = ["COUNTRY", "WEBSITE OF SURVEY"];
+        let maxSelections = 7;
+        let availableColumns = {
+          "MAP SCALES (25-50 K)": "MAP SCALES (25-50 K)",
+          "MAP SCALES (<50-100 K)": "MAP SCALES (<50-100 K)",
+          "Structural Geology": "Structural Geology",
+          "Metamorphic Geology": "Metamorphic Geology",
+          "ENVIRONMENTAL GEOLOGY (Ground Water Assessment)": "ENVIRONMENTAL GEOLOGY (Ground Water Assessment)",
+          "GEOPHYSICS (Magnetic)": "GEOPHYSICS (Magnetic)",
+          "HYDROGEOLOGY": "HYDROGEOLOGY",
+          "GEOTHERMAL  (Energy)": "GEOTHERMAL  (Energy)",
+          "GEOHERITAGE": "GEOHERITAGE",
+          "GEOTOURISM": "GEOTOURISM"
+        };
+
+        function updateTable() {
+          $('#geodata-table').DataTable().destroy();
+          $('#geodata-table thead tr').empty();
+          $('#geodata-table thead tr').append('<th>Country</th><th>Website of Survey</th>');
+          selectedColumns.slice(2).forEach(col => {
+            $('#geodata-table thead tr').append(`<th>${col}</th>`);
+          });
+
+          $('#geodata-table').DataTable({
+            "ajax": "assets/country_geo_data.json",
+            "columns": selectedColumns.map(col => ({ "data": col }))
+          });
+        }
+
+        function addCategory(category) {
+          if (selectedColumns.length < maxSelections + 2) {
+            selectedColumns.push(category);
+            $("#selectedCategories").append(`<span class="selected-category" onclick="removeCategory('${category}')">${category}</span>`);
+            updateTable();
+          } else {
+            alert("You can only select up to 7 categories.");
+          }
+        }
+
+        function removeCategory(category) {
+          selectedColumns = selectedColumns.filter(col => col !== category);
+          $("#selectedCategories").empty();
+          selectedColumns.slice(2).forEach(col => {
+            $("#selectedCategories").append(`<span class="selected-category" onclick="removeCategory('${col}')">${col}</span>`);
+          });
+          updateTable();
+        }
+
+        $(document).ready(function () {
+          updateTable();
+
+          $("#categorySelect").change(function () {
+            let selectedValue = $(this).val();
+            if (selectedValue && !selectedColumns.includes(selectedValue)) {
+              addCategory(selectedValue);
+            }
+            $(this).val("");
+          });
+        });
+      </script>
+
+      <!-- Footer -->
+      <footer id="footer" style="
         background-color: #f9f9f9;
         text-align: center;
         padding: 10px 20px;
         font-family: Arial, sans-serif;
-      "
-    >
-      <div class="container">
-        <!-- Logo -->
-        <div style="margin-bottom: 20px">
-          <img
-            src="images\agdp.png"
-            alt="AGDP Logo"
-            style="height: 50px; display: block; margin: 0 auto"
-          />
-        </div>
+      ">
+        <div class="container">
+          <!-- Logo -->
+          <div style="margin-bottom: 20px">
+            <img src="images\agdp.png" alt="AGDP Logo" style="height: 50px; display: block; margin: 0 auto" />
+          </div>
 
-        <!-- Description -->
-        <p
-          style="
+          <!-- Description -->
+          <p style="
             font-size: 14px;
             color: #555;
             max-width: 600px;
             margin: 0 auto 10px;
-          "
-        >
-          Empowering Africa with accessible geospatial data to drive
-          sustainable development and innovation.
-        </p>
+          ">
+            Empowering Africa with accessible geospatial data to drive
+            sustainable development and innovation.
+          </p>
 
-        <!-- Links -->
-        <div style="margin-bottom: 20px">
-          <a
-            href="about.html"
-            style="
+          <!-- Links -->
+          <div style="margin-bottom: 20px">
+            <a href="about.html" style="
               margin: 0 15px;
               font-size: 14px;
               color: #333;
               text-decoration: none;
-            "
-            >About</a
-          >
-          <a
-            href="geodata-inventory.html"
-            style="
+            ">About</a>
+            <a href="geodata-inventory.html" style="
               margin: 0 15px;
               font-size: 14px;
               color: #333;
               text-decoration: none;
-            "
-            >Geodata Inventory</a
-          >
-          <a
-            href="geodata-platforms.html"
-            style="
+            ">Geodata Inventory</a>
+            <a href="geodata-platforms.html" style="
               margin: 0 15px;
               font-size: 14px;
               color: #333;
               text-decoration: none;
-            "
-            >Geodata Platforms</a
-          >
-          <a
-            href="african-projects.html"
-            style="
+            ">Geodata Platforms</a>
+            <a href="african-projects.html" style="
               margin: 0 15px;
               font-size: 14px;
               color: #333;
               text-decoration: none;
-            "
-          >
-            African Projects</a
-          >
-          <a
-            href="contact.html"
-            style="
+            ">
+              African Projects</a>
+            <a href="contact.html" style="
               margin: 0 15px;
               font-size: 14px;
               color: #333;
               text-decoration: none;
-            "
-            >Contact Us</a
-          >
-        </div>
+            ">Contact Us</a>
+          </div>
 
-        <!-- Social Media Icons -->
-        <div>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            style="margin: 0 10px; color: #555; text-decoration: none"
-          >
-            <i class="icon brands fa-twitter" style="font-size: 20px"></i>
-          </a>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            style="margin: 0 10px; color: #555; text-decoration: none"
-          >
-            <i class="icon brands fa-facebook-f" style="font-size: 20px"></i>
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            style="margin: 0 10px; color: #555; text-decoration: none"
-          >
-            <i class="icon brands fa-instagram" style="font-size: 20px"></i>
-          </a>
-          <a
-            href="https://github.com"
-            target="_blank"
-            style="margin: 0 10px; color: #555; text-decoration: none"
-          >
-            <i class="icon brands fa-github" style="font-size: 20px"></i>
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            style="margin: 0 10px; color: #555; text-decoration: none"
-          >
-            <i class="icon brands fa-linkedin-in" style="font-size: 20px"></i>
-          </a>
+          <!-- Social Media Icons -->
+          <div>
+            <a href="https://twitter.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none">
+              <i class="icon brands fa-twitter" style="font-size: 20px"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none">
+              <i class="icon brands fa-facebook-f" style="font-size: 20px"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none">
+              <i class="icon brands fa-instagram" style="font-size: 20px"></i>
+            </a>
+            <a href="https://github.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none">
+              <i class="icon brands fa-github" style="font-size: 20px"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" style="margin: 0 10px; color: #555; text-decoration: none">
+              <i class="icon brands fa-linkedin-in" style="font-size: 20px"></i>
+            </a>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
   </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script>
-        // Initialize the map
-        var map = L.map('map').setView([0, 20], 3);
-
-        // Add tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Fetch and add GeoJSON data
-        fetch('assets/A2.geojson')
-            .then(response => response.json())
-            .then(data => {
-                // Define a function to set styles based on properties
-                function getColor(value) {
-                    return value === "Yes" ? '#31a354' : '#d73027';
-                }
-
-                function style(feature) {
-                    return {
-                        fillColor: getColor(feature.properties['25_50K']),
-                        weight: 1,
-                        opacity: 1,
-                        color: 'white',
-                        dashArray: '3',
-                        fillOpacity: 0.7
-                    };
-                }
-
-                // Interactivity
-                function highlightFeature(e) {
-                    var layer = e.target;
-
-                    layer.setStyle({
-                        weight: 5,
-                        color: '#666',
-                        dashArray: '',
-                        fillOpacity: 0.7
-                    });
-
-                    info.update(layer.feature.properties);
-                }
-
-                function resetHighlight(e) {
-                    geojson.resetStyle(e.target);
-                    info.update();
-                }
-
-                function zoomToFeature(e) {
-                    map.fitBounds(e.target.getBounds());
-                }
-
-                function onEachFeature(feature, layer) {
-                    layer.on({
-                        mouseover: highlightFeature,
-                        mouseout: resetHighlight,
-                        click: zoomToFeature
-                    });
-                }
-
-                // Add GeoJSON to the map
-                var geojson = L.geoJSON(data, {
-                    style: style,
-                    onEachFeature: onEachFeature
-                }).addTo(map);
-
-                // Info control
-                var info = L.control();
-
-                info.onAdd = function (map) {
-                    this._div = L.DomUtil.create('div', 'info');
-                    this.update();
-                    return this._div;
-                };
-
-                info.update = function (props) {
-                    this._div.innerHTML = '<h4>Geodata Availability</h4>' +
-                        (props ? '<b>' + props.NAME + '</b><br />' +
-                            '25-50K: ' + props['25_50K'] + '<br>' +
-                            '50-100K: ' + props['50_100K'] : 'Hover over a country');
-                };
-
-                info.addTo(map);
-
-                // Add a legend
-                var legend = L.control({ position: 'bottomright' });
-
-                legend.onAdd = function (map) {
-                    var div = L.DomUtil.create('div', 'info legend'),
-                        grades = ["Yes", "No"],
-                        labels = ["Available", "Not Available"],
-                        colors = ['#31a354', '#d73027'];
-
-                    for (var i = 0; i < grades.length; i++) {
-                        div.innerHTML += '<i style="background:' + colors[i] + '"></i> ' + labels[i] + '<br>';
-                    }
-
-                    return div;
-                };
-
-                legend.addTo(map);
-            })
-            .catch(error => console.error('Error loading GeoJSON:', error));
-    </script>
+  </div>
 </body>
+
 </html>
